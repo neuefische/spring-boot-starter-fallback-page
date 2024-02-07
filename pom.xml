@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>de.neuefische.java</groupId>
-    <artifactId>spring-boot-starter-redirect-unkown-urls-to-index-html</artifactId>
+    <artifactId>spring-boot-starter-fallback-page</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-starter-redirect-unkown-urls-to-index-html</name>
-    <description>spring-boot-starter-redirect-unkown-urls-to-index-html</description>
+    <name>spring-boot-starter-fallback-page</name>
+    <description>Redirects all unknown urls to the index.html</description>
     <properties>
         <java.version>21</java.version>
     </properties>

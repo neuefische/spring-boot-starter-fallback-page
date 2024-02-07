@@ -1,4 +1,4 @@
-# spring-boot-starter redirect unkown urls to index.html
+# spring-boot-starter fallback page: redirects unknown urls to index.html
 
 ## Why?
 
@@ -15,8 +15,8 @@ In a Spring Boot application, add this dependency to your `pom.xml`:
 
 <dependency>
     <groupId>de.neuefische.java</groupId>
-    <artifactId>spring-boot-starter-redirect-unkown-urls-to-index-html</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>spring-boot-starter-fallback-page</artifactId>
+    <version>...current version...</version>
 </dependency>
 ```
 

@@ -1,4 +1,4 @@
-package de.neuefische.java.redirect;
+package de.neuefische.java.fallbackpage;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -10,7 +10,7 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 import java.io.IOException;
 
 @Configuration
-public class ReactRoutingForwarding implements WebMvcConfigurer {
+public class FallbackPage implements WebMvcConfigurer {
 
     public static final String DEFAULT_STARTING_PAGE = "static/index.html";
 

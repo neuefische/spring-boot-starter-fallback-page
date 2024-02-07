@@ -8,7 +8,7 @@
         <version>3.2.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>de.neuefische.java.redirect</groupId>
+    <groupId>de.neuefische.java.fallbackpage</groupId>
     <artifactId>example</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>example</name>
@@ -18,20 +18,9 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>de.neuefische.java</groupId>
-            <artifactId>spring-boot-starter-redirect-unkown-urls-to-index-html</artifactId>
+            <artifactId>spring-boot-starter-fallback-page</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 

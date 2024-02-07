@@ -1,4 +1,4 @@
-package de.neuefische.redirectexample;
+package de.neuefische.java.fallbackpageexample;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

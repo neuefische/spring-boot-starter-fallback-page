@@ -1,6 +1,6 @@
-package de.neuefische.java.redirect;
+package de.neuefische.java.fallbackpage;
 
-import de.neuefische.java.redirect.ReactRoutingForwarding.ReactRoutingPathResourceResolver;
+import de.neuefische.java.fallbackpage.FallbackPage.ReactRoutingPathResourceResolver;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class ReactRoutingPathResourceResolverTest {
+class FallbackPageTest {
 
     @Test
     void expectRelativeResource_ifItExists() throws IOException {
