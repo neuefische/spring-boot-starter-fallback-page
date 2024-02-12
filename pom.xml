@@ -8,16 +8,46 @@
         <version>3.2.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
     <groupId>de.neuefische.java</groupId>
     <artifactId>spring-boot-starter-fallback-page</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-starter-fallback-page</name>
+    <version>1.0.0</version>
+    <name>de.neuefische.java:spring-boot-starter-fallback-page</name>
     <description>Redirects all unknown urls to the index.html</description>
+    <url>https://www.neuefische.de/bootcamp/java-development</url>
     <properties>
         <java.version>21</java.version>
         <sonar.organization>neuefische</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/license/mit/</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Java-Team</name>
+            <email>java.team.neuefische@gmail.com</email>
+            <organization>Neuefische</organization>
+            <organizationUrl>https://www.neuefische.de/bootcamp/java-development</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git://github.com/neuefische/spring-boot-starter-fallback-page.git</connection>
+        <developerConnection>scm:git:ssh://github.com:neuefische/spring-boot-starter-fallback-page.git</developerConnection>
+        <url>https://github.com/neuefische/spring-boot-starter-fallback-page/tree/main</url>
+    </scm>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -34,6 +64,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -52,6 +83,25 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
