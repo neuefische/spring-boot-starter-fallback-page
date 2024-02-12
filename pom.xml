@@ -45,7 +45,8 @@
     </developers>
     <scm>
         <connection>scm:git:git://github.com/neuefische/spring-boot-starter-fallback-page.git</connection>
-        <developerConnection>scm:git:ssh://github.com:neuefische/spring-boot-starter-fallback-page.git</developerConnection>
+        <developerConnection>scm:git:ssh://github.com:neuefische/spring-boot-starter-fallback-page.git
+        </developerConnection>
         <url>https://github.com/neuefische/spring-boot-starter-fallback-page/tree/main</url>
     </scm>
     <dependencies>
@@ -96,12 +97,32 @@
                         <goals>
                             <goal>sign</goal>
                         </goals>
-                        <configuration>
-                            <gpgArguments>
-                                <arg>--pinentry-mode</arg>
-                                <arg>loopback</arg>
-                            </gpgArguments>
-                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.6.3</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

@@ -1,12 +1,11 @@
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    types: [ opened, synchronize, reopened ]
+    tags:
+      - '*'
+
 jobs:
   build:
-    name: Build and analyze
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,29 +16,27 @@ jobs:
         with:
           java-version: 21
           distribution: 'zulu' # Alternative distribution options are available.
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
           gpg-private-key: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
+      - name: Set up Maven credentials
+        run: |
+          mkdir -p ~/.m2
+          echo "<settings xmlns='http://maven.apache.org/SETTINGS/1.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd'>
+          <servers>
+           <server>
+             <id>ossrh</id>
+             <username>${{ secrets.OSSRH_USERNAME }}</username>
+             <password>${{ secrets.OSSRH_TOKEN }}</password>
+           </server>
+          </servers>
+          </settings>" > ~/.m2/settings.xml
       - name: Cache Maven packages
         uses: actions/cache@v3
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Build and analyze
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=neuefische_spring-boot-starter-fallback-page
+      - name: Build
+        run: mvn --no-transfer-progress --batch-mode verify
       - name: Prepare artifact
         run: |
           mkdir -p artifact
@@ -55,9 +52,10 @@ jobs:
           mkdir -p de/neuefische/java/spring-boot-starter-fallback-page/${GITHUB_REF##*/}
           mv artifact/* de/neuefische/java/spring-boot-starter-fallback-page/${GITHUB_REF##*/}
           zip -r spring-boot-starter-fallback-page.zip de/neuefische/java/spring-boot-starter-fallback-page/${GITHUB_REF##*/}
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+      - name: Create release
+        uses: ncipollo/release-action@v1
         with:
-          name: fallback-page
-          path: |
-            spring-boot-starter-fallback-page-CURRENT.zip
+          allowUpdates: true
+          artifacts: |
+            spring-boot-starter-fallback-page.zip
+          token: ${{ secrets.GITHUB_TOKEN }}
