@@ -20,7 +20,7 @@
     </distributionManagement>
     <groupId>de.neuefische.java</groupId>
     <artifactId>spring-boot-starter-fallback-page</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>de.neuefische.java:spring-boot-starter-fallback-page</name>
     <description>Redirects all unknown urls to the index.html</description>
     <url>https://www.neuefische.de/bootcamp/java-development</url>
